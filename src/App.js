@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from "react";
+
+import "./App.css";
+import LeftNav from "./components/nav/LeftNav";
+import SearchBar from "./components/search/SearchBar";
+import MainContainer from "./components/main/MainContainer";
+import { AppContext, appReducer } from "./utills";
+
+const initialState = {
+  isLoading: false,
+  queryRunning: false,
+  queryString: '',
+  tableData: [],
+  serachResult: [],
+  recentSearch: []
+}
 
 function App() {
+  const value = useReducer(appReducer, initialState);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={value}>
+      <div className="flex h-screen bg-white">
+        <LeftNav />
+        <div className="flex flex-col flex-1 h-full">
+          <SearchBar />
+          <MainContainer />
+        </div>
+      </div>
+    </AppContext.Provider>
+    
   );
 }
 

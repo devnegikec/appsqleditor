@@ -1,0 +1,31 @@
+[{
+    "id": 1,
+    "value": "Customre table",
+    "details": {
+      "type": "table",
+      "row": 1234,
+      "columns": 12,
+      "source": "sql_db",
+      "lastsearch": 1664030118
+    }
+  },{
+    "id": 2,
+    "value": "User table",
+    "details": {
+      "type": "table",
+      "row": 1008,
+      "columns": 9,
+      "source": "sql_db",
+      "lastsearch": 1664030118
+    }
+  },{
+    "id": 3,
+    "value": "ice cream",
+    "details": {
+      "type": "user",
+      "row": 1234,
+      "columns": 12,
+      "source": "index_db",
+      "lastsearch": 1664030118
+    }
+  }]
