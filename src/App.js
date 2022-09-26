@@ -4,16 +4,8 @@ import "./App.css";
 import LeftNav from "./components/nav/LeftNav";
 import SearchBar from "./components/search/SearchBar";
 import MainContainer from "./components/main/MainContainer";
-import { AppContext, appReducer } from "./utills";
-
-const initialState = {
-  isLoading: false,
-  queryRunning: false,
-  queryString: '',
-  tableData: [],
-  serachResult: [],
-  recentSearch: []
-}
+import { AppContext, appReducer, initialState } from "./utills";
+import TableWrapper from "./components/tables/TableWrapper";
 
 function App() {
   const value = useReducer(appReducer, initialState);
@@ -24,6 +16,7 @@ function App() {
         <div className="flex flex-col flex-1 h-full">
           <SearchBar />
           <MainContainer />
+          <TableWrapper />
         </div>
       </div>
     </AppContext.Provider>

@@ -35,7 +35,7 @@ function Autocomplete({ results, recent }) {
                 <div className="divide-y">
                     {
                         results.map((result) => {
-                            return (<a href="#" onClick={handleSelectSearch} className="p-2 flex w-full rounded hover:bg-gray-200">
+                            return (<a href="#" key={result.id} onClick={handleSelectSearch} className="p-2 flex w-full rounded hover:bg-gray-200">
                                         {getIcon(result.details.type)}
                                         <span className="">{result.value}</span>
                                     </a>);
