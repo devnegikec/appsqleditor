@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { AppContext } from "../../utills";
 import { PlayIcon, SaveIcon, SettingsIcon, DownloadIcon } from "../Icons";
 import { editorActions, appActions } from "../../constant";
@@ -7,11 +7,17 @@ function Tabs() {
     const [state, dispatch] = useContext(AppContext);
     const {
         queryRunning,
-        queryString
+        queryString,
+        selectedTable
     } = state;
 
     const runQuery = () => {
-        fetch('data/employees.json')
+        let url = 'data/employees.json';
+
+        if (selectedTable) {
+            url = `data/${selectedTable}.json`;
+        }
+        fetch(url)
             .then((response) => {
                 return response.json();
             })
@@ -21,6 +27,10 @@ function Tabs() {
                 })
             })
     };
+
+    useEffect(() => {
+        runQuery();
+    }, [selectedTable]);
 
     return useMemo(() => {
         return (      

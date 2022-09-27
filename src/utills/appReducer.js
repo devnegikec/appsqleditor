@@ -3,10 +3,24 @@ import { editorActions, appActions } from "../constant";
 export const initialState = {
   isLoading: false,
   queryRunning: false,
-  queryString: '',
+  queryString: "",
   tableData: [],
   serachResult: [],
-  recentSearch: []
+  recentSearch: [],
+  selectedTable: "employees",
+  tableList: [
+    "categories",
+    "customers",
+    "employee_territories",
+    "employees",
+    "order_details",
+    "orders",
+    "products",
+    "regions",
+    "shippers",
+    "suppliers",
+    "territories",
+  ]
 };
 
 export const appReducer = (state, action) => {
@@ -21,6 +35,12 @@ export const appReducer = (state, action) => {
       return {...state, recentSearch: action.recentSearch};
     case appActions.SEARCH:
       return {...state, serachResult: action.serachResult};
+    case editorActions.SELECTTABLE:
+      return {
+        ...state,
+        selectedTable: action.selectedTable,
+        queryString: `select * from ${action.selectedTable};`
+      };
     default:
       throw new Error("Unexpected action type");
   }
