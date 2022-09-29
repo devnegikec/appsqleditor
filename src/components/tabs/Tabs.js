@@ -5,6 +5,8 @@ import { editorActions, appActions } from "../../constant";
 
 function Tabs() {
     const [state, dispatch] = useContext(AppContext);
+    const startTime = new Date().getTime();
+
     const {
         queryRunning,
         queryString,
@@ -35,6 +37,15 @@ function Tabs() {
                 dispatch({
                     type: appActions.ISLOADING, isLoading: false
                 });
+                dispatch({
+                    type: editorActions.QUERYRUNTIME, queryRunTime: ((new Date().getTime()) - startTime)
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+                dispatch({
+                    type: editorActions.QUERYRUNTIME, queryRunTime: ((new Date().getTime()) - startTime)
+                })
             })
     };
 

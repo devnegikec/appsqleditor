@@ -4,6 +4,7 @@ export const initialState = {
   isLoading: false,
   queryRunning: false,
   queryString: "",
+  queryRunTime: 0,
   tableData: [],
   tableColumns: [],
   serachResult: [],
@@ -29,6 +30,8 @@ export const appReducer = (state, action) => {
       return {...state, isLoading: action.isLoading};
     case editorActions.RUNQUERY:
       return {...state, queryRunning: action.queryRunning};
+    case editorActions.QUERYRUNTIME:
+      return {...state, queryRunTime: action.queryRunTime};
     case editorActions.UPDATEQUERY:
       return {...state, queryString: action.queryString};
     case appActions.UPDATETABLECOLUMNS:

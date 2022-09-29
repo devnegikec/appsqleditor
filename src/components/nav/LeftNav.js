@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, useEffect } from "react";
 
 import { AppContext } from "../../utills";
 import { editorActions } from "../../constant";

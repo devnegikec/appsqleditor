@@ -29,7 +29,7 @@ function Autocomplete({ results, recent }) {
     }
 
     return (
-        <div className="absolute top-90 ml-5 mt-1 w-1/2 border bg-gray-100 shadow-xl rounded">
+        <div className="absolute top-90 ml-5 mt-1 w-1/2 border bg-gray-100 shadow-xl rounded z-50">
             <h2 className="p-3 text-blue-400">{recent ? "Recent" : "" }</h2>
             <div className="p-3">
                 <div className="divide-y">

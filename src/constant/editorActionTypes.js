@@ -4,5 +4,6 @@ export const editorActions = {
     SELECTTABLE: 'selecttable',
     EXPORT: 'export',
     SETTINGS: 'settings',
-    UPDATEQUERY: 'updatequery'
+    UPDATEQUERY: 'updatequery',
+    QUERYRUNTIME: 'queryruntime'
 }

@@ -7,7 +7,7 @@ import Tabs from "../tabs/Tabs";
 function MainContainer() {
 
     const [state, dispatch] = useContext(AppContext);
-    const { queryString } = state;
+    const { queryString, queryRunTime } = state;
 
     const handleQueryChange = (e) => {
         const query = e.target.value.trim();
@@ -22,9 +22,12 @@ function MainContainer() {
         return (
             <div className="flex flex-col items-start justify-between pb-2 space-y-4 lg:items-center lg:space-y-0 lg:flex-row">
                 <div className="text-2xl font-semibold whitespace-nowrap w-full">
-                    <h1>Search Result</h1>
                     <Tabs />
+                    <div className="flex pl-5 text-xs">
+                        <span className="text-xs text-gray-400">Time taken by query:-</span><span>{queryRunTime/1000} seconds</span>
+                    </div>
                     <div className="flex justify-center pt-5">
+                        
                         <div className="mb-3 xl:w-100 w-full">
             
                             <textarea

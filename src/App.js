@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 import "./App.css";
 import LeftNav from "./components/nav/LeftNav";
@@ -9,6 +9,7 @@ import TableWrapper from "./components/tables/TableWrapper";
 
 function App() {
   const value = useReducer(appReducer, initialState);
+  
   return (
     <AppContext.Provider value={value}>
       <div className="flex h-screen bg-white">

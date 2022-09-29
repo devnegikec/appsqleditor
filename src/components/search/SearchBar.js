@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useMemo } from 'react';
+import { useContext, useEffect, useState, useMemo, useRef } from 'react';
 
 import { AppContext } from '../../utills/contextUtills';
 import { appActions } from '../../constant';
@@ -6,41 +6,52 @@ import Autocomplete from "./Autocomplete";
 import { UserIcon } from "../Icons";
 
 function SearchBar() {
+  const ref = useRef(null);
   const [state, dispatch] = useContext(AppContext);
   const { recentSearch } = state;
 
   const [search, setSearchResult] = useState([]);
-  const [query, setQuery] = useState("");
   const [isRecent, setIsRecent] = useState(false);
 
-  const getRecentSearch = () => {
-    fetch('data/recentsearch.json')
-      .then((response) => {
-          return response.json();
-      })
-      .then((data) => {
-          dispatch({
-              type: appActions.RECENTSEARCH, recentSearch: data
-          })
-      })
-  };
-
-  useEffect(() => {
-    const result = getRecentSearch();
-  }, [isRecent]);
 
   const keypressHandler = (e) => {
-    const query = e.target.value.trim();
-    if(!query) {
-      focusHandler();
+    console.log("keypress:-");
+    const min = 1000, max = 10000;
+    let query = ref.current.value.trim();
+    const type = ["user", "aws", "snowflake", "query", "user"];
+
+    if (e.key === "Enter") {
+       
+        const searchItem = {
+          "id": Math.floor(Math.random() * (max - min + 1)) + min,
+          "value": query,
+          "details": {
+            "type": type[Math.floor(Math.random() * type.length)],
+            "source": "user_search",
+            "lastsearch": new Date().getTime()
+          }
+      };
+
+      dispatch({
+        type: appActions.RECENTSEARCH, recentSearch: [...recentSearch, searchItem]
+      })
+      ref.current.value = "";
+      query = "";
     }
-    setIsRecent(false);
-    setQuery(query);
+
+    if(!query) {
+      console.log("if:-", query);
+      setIsRecent(true);
+    } else {
+      console.log("else:-", query);
+      setIsRecent(false);
+    }
+    
   }
 
   const focusHandler = () => {
-    if(!query) {
-      setIsRecent((prevIsRecent) => !prevIsRecent);
+    if(!ref.current.value) {
+      setIsRecent(true);
     }
   }
 
@@ -60,7 +71,7 @@ function SearchBar() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </span>
-            <input type="text" placeholder="Search" onBlur={onBlurHandler} onKeyUp={keypressHandler} onFocus={focusHandler} className="px-4 py-3 rounded-md hover:bg-gray-100 lg:max-w-sm md:py-2 md:flex-1 focus:outline-none md:focus:bg-gray-100 md:focus:shadow md:focus:border"></input>
+            <input ref={ref} type="text" placeholder="Search" onBlur={onBlurHandler} onKeyUp={keypressHandler} onFocus={focusHandler} className="px-4 py-3 rounded-md hover:bg-gray-100 lg:max-w-sm md:py-2 md:flex-1 focus:outline-none md:focus:bg-gray-100 md:focus:shadow md:focus:border"></input>
             </div>
             <div className="relative flex items-center space-x-3">
               <div className="relative">
@@ -70,10 +81,10 @@ function SearchBar() {
               </div>
             </div>
           </div>
-          {isRecent ? <Autocomplete results={recentSearch} recent={isRecent} />: null}
+          {(isRecent && recentSearch.length) ? <Autocomplete results={recentSearch} recent={isRecent} />: null}
       </header>
     );
-  }, [recentSearch]);
+  }, [recentSearch, isRecent]);
 }
 
 export default SearchBar;
