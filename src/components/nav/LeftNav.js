@@ -6,7 +6,7 @@ import { TableIcon } from "../Icons"
 
 function LeftNav() {
     const [state, dispatch] = useContext(AppContext);
-    const { tableList, selectedTable } = state;
+    const { tableList } = state;
 
     const selectTable = (tableName) => {
         dispatch({

@@ -3,5 +3,6 @@ export const appActions = {
     RECENTSEARCH: 'recentsearch',
     SAVERECENT: 'saverecent',
     UPDATETABLE: 'updatetable',
-    UPDATETABLECOLUMNS: 'updatetablecolumns'
+    UPDATETABLECOLUMNS: 'updatetablecolumns',
+    ISLOADING: 'isloading'
 }

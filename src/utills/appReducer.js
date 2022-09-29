@@ -25,6 +25,8 @@ export const initialState = {
 
 export const appReducer = (state, action) => {
   switch(action.type) {
+    case appActions.ISLOADING:
+      return {...state, isLoading: action.isLoading};
     case editorActions.RUNQUERY:
       return {...state, queryRunning: action.queryRunning};
     case editorActions.UPDATEQUERY:

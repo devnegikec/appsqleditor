@@ -1,4 +1,4 @@
-import {useContext, useMemo, useState} from "react";
+import {useContext, useMemo} from "react";
 
 import { AppContext } from "../../utills";
 import { editorActions } from "../../constant";
@@ -13,11 +13,11 @@ function MainContainer() {
         const query = e.target.value.trim();
         if(!query) return;
         
-        console.log("in handleQueryChange:-", e.target.value);
         dispatch({
             type: editorActions.UPDATEQUERY, queryString: e.target.value
         });
     }
+
     return useMemo(() => {
         return (
             <div className="flex flex-col items-start justify-between pb-2 space-y-4 lg:items-center lg:space-y-0 lg:flex-row">
@@ -55,7 +55,7 @@ function MainContainer() {
                 </div>
             </div>
         )
-    }, [queryString, dispatch]);
+    }, [queryString, dispatch, handleQueryChange]);
 }
 
 export default MainContainer;

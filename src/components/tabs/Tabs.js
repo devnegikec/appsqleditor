@@ -8,7 +8,8 @@ function Tabs() {
     const {
         queryRunning,
         queryString,
-        selectedTable
+        selectedTable,
+        isLoading
     } = state;
 
     const runQuery = () => {
@@ -31,10 +32,16 @@ function Tabs() {
                 dispatch({
                     type: appActions.UPDATETABLE, tableData: tableData
                 });
+                dispatch({
+                    type: appActions.ISLOADING, isLoading: false
+                });
             })
     };
 
     useEffect(() => {
+        dispatch({
+            type: appActions.ISLOADING, isLoading: true
+        });
         runQuery();
     }, [selectedTable]);
 
