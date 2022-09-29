@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { buildColumns } from "../../utills";
 
 export const COLUMNS = [
     {

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo } from "react";
-import { AppContext } from "../../utills";
+import { AppContext, buildColumns, flattenObj } from "../../utills";
 import { PlayIcon, SaveIcon, SettingsIcon, DownloadIcon } from "../Icons";
 import { editorActions, appActions } from "../../constant";
 
@@ -22,9 +22,15 @@ function Tabs() {
                 return response.json();
             })
             .then((data) => {
+                const columns = buildColumns(data[0]);
+                const d = data.map((tdata) => flattenObj(tdata));
+                const tableData = [...d, ...d, ...d];
                 dispatch({
-                    type: appActions.UPDATETABLE, tableData: data
-                })
+                    type: appActions.UPDATETABLECOLUMNS, tableColumns: columns
+                });
+                dispatch({
+                    type: appActions.UPDATETABLE, tableData: tableData
+                });
             })
     };
 

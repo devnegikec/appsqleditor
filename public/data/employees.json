@@ -17,16 +17,7 @@
 			"phone" : "(206) 555-9482"
 		},
 		"notes" : "Andrew received his BTS commercial in 1974 and a Ph.D. in international marketing from the University of Dallas in 1981.  He is fluent in French and Italian and reads German.  He joined the company as a sales representative was promoted to sales manager",
-		"reportsTo" : "NULL",
-		"territoryIDs" : [
-			1730,
-			1833,
-			2116,
-			2139,
-			2184,
-			40222,
-			1581
-		]
+		"reportsTo" : "NULL"
 	},
 	{
 		"employeeID" : 5,

@@ -5,6 +5,7 @@ export const initialState = {
   queryRunning: false,
   queryString: "",
   tableData: [],
+  tableColumns: [],
   serachResult: [],
   recentSearch: [],
   selectedTable: "employees",
@@ -16,7 +17,6 @@ export const initialState = {
     "order_details",
     "orders",
     "products",
-    "regions",
     "shippers",
     "suppliers",
     "territories",
@@ -29,6 +29,8 @@ export const appReducer = (state, action) => {
       return {...state, queryRunning: action.queryRunning};
     case editorActions.UPDATEQUERY:
       return {...state, queryString: action.queryString};
+    case appActions.UPDATETABLECOLUMNS:
+      return {...state, tableColumns: action.tableColumns}
     case appActions.UPDATETABLE:
       return {...state, tableData: action.tableData};
     case appActions.RECENTSEARCH:
