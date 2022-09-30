@@ -3,6 +3,7 @@ import { AppContext } from "./contextUtills";
 import { flattenObj } from "./flattenUtill";
 import buildColumns from "./buildColumnsUtills";
 import calculateDispayPages from "./calculatePages";
+import debounce from "./debounce";
 
 export {
     initialState,
@@ -10,5 +11,6 @@ export {
     AppContext,
     flattenObj,
     buildColumns,
+    debounce,
     calculateDispayPages
 }

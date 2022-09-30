@@ -3,6 +3,7 @@ import { editorActions, appActions } from "../constant";
 export const initialState = {
   isLoading: false,
   queryRunning: false,
+  showRecent: false,
   queryString: "",
   queryRunTime: 0,
   tableData: [],
@@ -42,6 +43,8 @@ export const appReducer = (state, action) => {
       return {...state, recentSearch: action.recentSearch};
     case appActions.SEARCH:
       return {...state, serachResult: action.serachResult};
+    case appActions.SHOWRECENT:
+      return {...state, showRecent: action.showRecent};
     case editorActions.SELECTTABLE:
       return {
         ...state,
